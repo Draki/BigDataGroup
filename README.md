@@ -10,3 +10,7 @@ To learn and practice Big Data Technologies
 
 
 [Public datasets](http://grouplens.org/datasets/ "All Grouplens datasets")
+
+Datasheets to play:
+http://opendata.stackexchange.com/
+
