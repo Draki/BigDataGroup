@@ -16,7 +16,7 @@ We have this solution:
 val movies = sc.textFile("<PATH>/movies.dat")
 val titles = movies.map(line => {
 val title = line.split("::")(1)
-title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\.","")
+title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
 }
 )
 val word = titles.flatMap(_.split(" ")).filter(_.size>3).map(x => (x,1)).reduceByKey(_+_).sortBy(x =>x._2,false).take(1)(0)._1
@@ -27,7 +27,7 @@ val movies = sc.textFile("<PATH>/movies.dat")
 
 val titles = movies.map(line => {
       val title = line.split("::")(1)
-      title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\.","")
+      title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
       }
       ).flatMap(x => x.split(" ").map(y =>( y,x,1)))
 
