@@ -13,7 +13,7 @@
 
 
   val movies = sc.textFile("/home/jmgomez/projects/BigDataGroup/spark/intro/josegom/movies.dat")
-
+This is a solution in one line but worse because we are using groupBy and it feature have problem: Suffle and maybe a partition have more information that others. 
 movies.map(line => {
       val title = line.split("::")(1)
       title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
