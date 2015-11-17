@@ -11,6 +11,10 @@ We suggest use Spark to solve the next questions about the dataset [1st Week Dat
 * Dowload Spark http://www.apache.org/dyn/closer.lua/spark/spark-1.5.1/spark-1.5.1-bin-hadoop2.6.tgz
 * Untar it
 * Execute bin/spark-shell
+ 
+# Resources
+https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/best_practices/prefer_reducebykey_over_groupbykey.html
+
 
 
 
