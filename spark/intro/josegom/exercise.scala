@@ -13,7 +13,9 @@
 
 
   val movies = sc.textFile("/home/jmgomez/projects/BigDataGroup/spark/intro/josegom/movies.dat")
-This is a solution in one line but worse because we are using groupBy and it feature have problem: Suffle and maybe a partition have more information that others. 
+
+* This is a solution in one line but worse because we are using groupBy and it feature have problem: Suffle and maybe a partition have more information that others. 
+
 movies.map(line => {
       val title = line.split("::")(1)
       title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
@@ -22,6 +24,20 @@ movies.map(line => {
         override def compare(x: (String, Int,Iterable[(String, String)]), y: (String, Int,Iterable[(String, String)])): Int = 
            Ordering[Int].compare(x._2, y._2)
       })._3.foreach(x=>println(x._1 + "<-->"+x._2))
+      
+      
+      * This is a solution with two val but maybe better
+      
+      val titles = movies.map(line => {
+val title = line.split("::")(1)
+title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\.","")
+}
+)
+val word = titles.flatMap(_.split(" ")).filter(_.size>3).map(x => (x,1)).reduceByKey(_+_).sortBy(x =>x._2,false).take(1)(0)._1
+//Maybe we can make it in other way if we can create a array like ((film1,word1)(film1FromFilm,word2FromFilm)(film2,word1FromFilm)......
+titles.filter(_.contains(word)).collect
+
+
       
 
  
