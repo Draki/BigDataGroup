@@ -13,7 +13,7 @@ We suggest use Spark to solve the next questions about the dataset [1st Week Dat
 * Execute bin/spark-shell
  
 # Resources
-https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/best_practices/prefer_reducebykey_over_groupbykey.html
+* Databricks Spark Knowledge Base: https://databricks.gitbooks.io/databricks-spark-knowledge-base/content/best_practices/prefer_reducebykey_over_groupbykey.html
 
 
 
