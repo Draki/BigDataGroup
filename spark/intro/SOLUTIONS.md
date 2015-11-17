@@ -22,14 +22,11 @@ title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
 val word = titles.flatMap(_.split(" ")).filter(_.size>3).map(x => (x,1)).reduceByKey(_+_).sortBy(x =>x._2,false).take(1)(0)._1
 titles.filter(_.contains(word)).collect
 
-But we are thinking about solve this problem with only one val. At now we have:
-val movies = sc.textFile("<PATH>/movies.dat")
+It is interesting to study what happens if a film has the same word two or more times, for example
 
-val titles = movies.map(line => {
-      val title = line.split("::")(1)
-      title.substring(0,title.indexOf('(')).replaceAll(",","").replaceAll("\\\\.","")
-      }
-      ).flatMap(x => x.split(" ").map(y =>( y,x,1)))
+Love<-->I Love You I Love You Not
+
+
 
 
 
