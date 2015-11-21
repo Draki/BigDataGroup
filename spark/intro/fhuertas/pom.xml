@@ -19,6 +19,7 @@
     </properties>
     <modules>
         <module>m1</module>
+        <module>m2</module>
     </modules>
     <dependencies>
         <dependency>
