@@ -17,7 +17,6 @@ import scala.Tuple2;
 import scala.Tuple3;
 
 import java.util.*;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -72,9 +71,22 @@ public class exercise2 {
                         .reduce((pair1,pair2)-> (Iterables.size(pair1._2())>Iterables.size(pair2._2()))?pair1:pair2);
 
         System.out.println(result);
-        if (true ) return;
+
+        // INCORRECTO
+        result = films.mapToPair(film->new Tuple2<>(film,Sets.newHashSet(film.replace(" +"," ").split(" "))))
+                .flatMapValues(set->set)
+                .mapToPair(pair->pair.swap())
+                .aggregateByKey(
+                        new Tuple2<>(0,Sets.<String>newIdentityHashSet()),
+                        (tuple,string)-> new Tuple2(1,Sets.newHashSet(string))
+                        ,(t1,t2)->
+                                new Tuple2<>(t1._1()+t2._1(),Stream.concat(t1._2().stream(),t2._2().stream()).collect(Collectors.toSet())))
+                .reduce((t1,t2)->(t1._2()._1() > t2._2()._1())?t1:t2);
 
 
+
+
+        System.out.println(result);
 
     }
 }
