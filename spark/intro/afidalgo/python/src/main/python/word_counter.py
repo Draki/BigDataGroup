@@ -1,16 +1,10 @@
 import re
 from sets_calculator import SetMovies
 
-class Counters:
+class WordCounter:
 
 
-	def year_with_more_movies(self,rdd):
-		 regexYearWithParenthesis = '[(][0-9][0-9][0-9][0-9][)]'
-		 rdd =  rdd.map(lambda line :  (re.search(regexYearWithParenthesis,line).group(),1))
-		 rdd = rdd.reduceByKey(lambda firstValue, secondValue: firstValue+secondValue)
-		 return rdd.takeOrdered(1, key=lambda x: -x[1])[0][0]
-	 
-	def word_more_repeater(self,rdd):
+	def getMaxValues(self,rdd):
 		setMovies = SetMovies()
 		regexMoviesTitle = '::([a-z]|[A-Z]|[0-9]|[(]|[)]|[ ])*::'
 		regexYear = '[(][0-9][0-9][0-9][0-9][)]'
@@ -21,16 +15,3 @@ class Counters:
 		rdd =  rdd.reduceByKey(lambda firstValue,secondValue :(firstValue[0]+secondValue[0],list(set(firstValue[1]+secondValue[1]))))		
 		funcReverseTuple = lambda value :(value[1][0],(value[0],value[1][1]))
 		return setMovies.setWithMaxValues(rdd,funcReverseTuple)
-
-
-
-
-
-
-
-
-
-
-	    	
-
-

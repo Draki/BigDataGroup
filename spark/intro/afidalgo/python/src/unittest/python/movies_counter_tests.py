@@ -25,5 +25,10 @@ class TestCounters(unittest.TestCase):
 		movies = self.sc.parallelize(movieList)
 		self.assertEqual(self.counter.year_with_more_movies(movies),'(1996)')
 
-
-		
+	def test_when_exist_one_movie_and_counter(self):
+	   movieList = ["1993::Toy Story Toy (1995)::Animation|Children's|Comedy",
+	                "1993::ToyA StoryA ToyA (1995)::Animation|Children's|Comedy"]	 
+	   result = [('ToyA', ['::ToyA StoryA ToyA (1995)::']),
+	             ('Toy', ['::Toy Story Toy (1995)::'])]                  
+	   movies = self.sc.parallelize(movieList)
+ 	   self.assertEqual(self.counter.word_more_repeater(movies),result)
