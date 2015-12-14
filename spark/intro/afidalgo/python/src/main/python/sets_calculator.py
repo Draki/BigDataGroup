@@ -8,12 +8,6 @@ class SetMovies :
 		rdd =  rdd.map(lambda tuple : (tuple[1]))
 		return rdd.first()
 
-	def setWithMaxValuesB(self,rdd,funcReverseTuple):
-		rdd =  rdd.map(funcReverseTuple)
-		rdd =  rdd.reduceByKey(lambda firstValue,secondValue : (firstValue,secondValue)).sortByKey(ascending=False)
-		rdd =  rdd.map(lambda tuple : (tuple[1]))
-		return rdd.first()
-
 
 			
 

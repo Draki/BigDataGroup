@@ -41,7 +41,7 @@ class TestCalculator (unittest.TestCase):
 	   result = ('(1996)','(1998)')
 	   rdd = self.sc.parallelize(entry)	
 	   funcReverseTuple = lambda value :(value[1],value[0])
-	   self.assertEqual(self.setMovies.setWithMaxValuesB(rdd,funcReverseTuple),result)
+	   self.assertEqual(self.setMovies.setWithMaxValues(rdd,funcReverseTuple),result)
 
 	def test_when_calculate_maximum_year_with_only_one(self):
 	   entry = [('(1996)',2),
@@ -51,7 +51,7 @@ class TestCalculator (unittest.TestCase):
 	   result = ('(1996)')
 	   rdd = self.sc.parallelize(entry)	
 	   funcReverseTuple = lambda value :(value[1],value[0])
-	   self.assertEqual(self.setMovies.setWithMaxValuesB(rdd,funcReverseTuple),result)        
+	   self.assertEqual(self.setMovies.setWithMaxValues(rdd,funcReverseTuple),result)        
 
 
 

@@ -9,5 +9,5 @@ class YearsCounter:
 	    regexYearWithParenthesis = '[(][0-9][0-9][0-9][0-9][)]'	    
 	    rdd =  rdd.map(lambda line :  (re.search(regexYearWithParenthesis,line).group(),1))
 	    rdd =  rdd.reduceByKey(lambda firstValue,secondValue :(firstValue+secondValue))	
-	    return setMovies.setWithMaxValuesB(rdd,lambda value :(value[1],value[0]))	    
+	    return setMovies.setWithMaxValues(rdd,lambda value :(value[1],value[0]))	    
 
