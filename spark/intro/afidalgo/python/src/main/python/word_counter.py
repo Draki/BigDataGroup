@@ -12,6 +12,5 @@ class WordCounter:
 		rdd =  rdd.map(lambda movie : (movie,movie.replace('::','').split(" ")))
 		rdd =  rdd.flatMap(lambda titleAndWords : map(lambda word: (word,(1,[titleAndWords[0]])),titleAndWords[1]))
 		rdd =  rdd.filter(lambda wordsAndTitle : not re.match(regexYear, wordsAndTitle[0]) and len(wordsAndTitle[0])>=3)
-		rdd =  rdd.reduceByKey(lambda firstValue,secondValue :(firstValue[0]+secondValue[0],list(set(firstValue[1]+secondValue[1]))))		
-		funcReverseTuple = lambda value :(value[1][0],(value[0],value[1][1]))
-		return setMovies.setWithMaxValues(rdd,funcReverseTuple)
+		rdd =  rdd.reduceByKey(lambda firstValue,secondValue :(firstValue[0]+secondValue[0],list(set(firstValue[1]+secondValue[1]))))	
+		return setMovies.setWithMaxValues(rdd,lambda value :(value[1][0],(value[0],value[1][1])))

@@ -13,5 +13,5 @@ class TestReaders(unittest.TestCase):
 	   self.reader.stop()
 
 	def test_when_read_file(self):
-	   self.assertEqual(self.reader.read('/Users/alvarofidalgo/gsSpark/movies.dat'),'(1996)')
+	   self.assertEqual(self.reader.read('/Users/alvarofidalgo/gsSpark/movies.dat','Years'),('(1996)'))
 	  
