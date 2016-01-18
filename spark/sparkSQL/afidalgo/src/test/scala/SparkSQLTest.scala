@@ -11,7 +11,7 @@ class SparkSQLTest extends FlatSpec with Matchers {
     val scContext = new Context("local[*]","spark://127.0.0.1:7077")
 
     val sparkSQL = new SparkSQL(scContext.context)
-    val dataFrame = sparkSQL.executeQuery("CREATE KEYSPACE my_keySpace WITH replication = {'class': 'SimpleStrategy', 'replication_factor': 1 }")
+    val dataFrame = sparkSQL.executeQuery("select * from demo.users")
     val rows = dataFrame.collect()
     rows.length should be (2)
   }
