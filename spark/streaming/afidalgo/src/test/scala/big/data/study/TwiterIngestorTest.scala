@@ -1,3 +1,5 @@
+package big.data.study
+
 import org.scalatest.WordSpec
 
 

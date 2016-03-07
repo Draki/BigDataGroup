@@ -1,5 +1,7 @@
+package big.data.study
+
 import com.typesafe.config.Config
-import twitter4j.{TwitterFactory, Twitter}
+import twitter4j.{Twitter, TwitterFactory}
 
 
 
@@ -13,11 +15,10 @@ class TwitterAuthorizationBuilder (config: Config){
                           .build
 
   def build() : Twitter = {
-   val authoritation =  new twitter4j.auth.OAuthAuthorization(configuration)
+   val authorization =  new twitter4j.auth.OAuthAuthorization(configuration)
    val twitter_auth = new TwitterFactory(configuration)
-   twitter_auth.getInstance(authoritation)
+   twitter_auth.getInstance(authorization)
   }
-
 }
 
 

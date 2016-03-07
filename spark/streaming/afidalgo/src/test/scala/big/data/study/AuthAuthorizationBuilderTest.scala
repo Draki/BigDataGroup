@@ -1,3 +1,5 @@
+package big.data.study
+
 import com.typesafe.config.ConfigFactory
 import org.scalatest.{ShouldMatchers, WordSpec}
 
