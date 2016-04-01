@@ -22,7 +22,7 @@ class StreamingContextFake [T](manualClockClass:String) {
   val ssc =  new StreamingContext(sc, new Duration(1))
 
 
-  def createDStrem : DStream[Status] = {
+  def createDStream : DStream[Status] = {
     ssc.queueStream(lines)
   }
 
@@ -30,11 +30,11 @@ class StreamingContextFake [T](manualClockClass:String) {
     lines += sc.makeRDD(seq)
   }
 
-  def start : Unit =  {
+  def start() : Unit =  {
     ssc.start()
   }
 
-  def stop: Unit = {
+  def stop() : Unit = {
     ssc.stop()
     sc.stop()
   }

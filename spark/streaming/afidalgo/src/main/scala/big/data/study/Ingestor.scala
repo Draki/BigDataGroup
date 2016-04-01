@@ -5,7 +5,7 @@ import big.data.study.persist.Persist
 import org.apache.spark.streaming.dstream.DStream
 import twitter4j.Status
 
-
+//TODO : CREATE TEST THAT SELECTED TYPE OF PERSIST
 class Ingestor (persist:Persist) {
 
 
@@ -17,7 +17,6 @@ class Ingestor (persist:Persist) {
 
                    )
            })
-
   }
 
 }

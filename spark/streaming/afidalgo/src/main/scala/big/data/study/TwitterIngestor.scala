@@ -6,9 +6,6 @@ import org.apache.spark.SparkConf
 import org.apache.spark.streaming.twitter.TwitterUtils
 import org.apache.spark.streaming.{Seconds, StreamingContext}
 
-/**
- * Class to ingest data twiter
- */
 class TwitterIngestor {
 
   private val sparkConf = new SparkConf()
@@ -19,10 +16,10 @@ class TwitterIngestor {
 
   def ingestTwiterTags(): Unit ={
 
-    val filters = Array("Real Madrid")
+    val filters = Array("Real Madrid","Barcelona")
     new Ingestor(new NoPersist)
                 .ingest(
-                     TwitterUtils.createStream(context,Some(twitterAuthorized.getAuthorization()),filters)
+                     TwitterUtils.createStream(context,Some(twitterAuthorized.getAuthorization),filters)
                   )
     context.start()
     context.awaitTermination()
