@@ -1,8 +1,11 @@
 package big.data.study
 
 import com.typesafe.config.ConfigFactory
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.{ShouldMatchers, WordSpec}
 
+@RunWith(classOf[JUnitRunner])
 class AuthAuthorizationBuilderTest extends WordSpec with ShouldMatchers {
 
   trait Data {

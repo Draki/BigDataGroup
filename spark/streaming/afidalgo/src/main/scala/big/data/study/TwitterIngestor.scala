@@ -1,6 +1,6 @@
 package big.data.study
 
-import big.data.study.persist.NoPersist
+import big.data.study.persist.PersistFactory
 import com.typesafe.config.ConfigFactory
 import org.apache.spark.SparkConf
 import org.apache.spark.streaming.twitter.TwitterUtils
@@ -17,7 +17,7 @@ class TwitterIngestor {
   def ingestTwiterTags(): Unit ={
 
     val filters = Array("Real Madrid","Barcelona")
-    new Ingestor(new NoPersist)
+    new Ingestor(PersistFactory())
                 .ingest(
                      TwitterUtils.createStream(context,Some(twitterAuthorized.getAuthorization),filters)
                   )

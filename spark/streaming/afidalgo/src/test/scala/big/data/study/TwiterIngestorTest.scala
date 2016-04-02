@@ -4,9 +4,6 @@ import org.scalatest.WordSpec
 
 
 
-/**
- * Test to twiterIngestor
- */
 class TwiterIngestorTest extends WordSpec {
 
 

@@ -5,8 +5,11 @@ package big.data.study
 
 import big.data.study.doubles.StatusDouble
 import big.data.study.matchers.TupleMatcher
-import big.data.study.persist.Persist
+import big.data.study.mocks.PersistFactoryMock
+import big.data.study.persist.{PersistFactory, Persist}
 import big.data.study.tools.StreamingContextFake
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 import org.scalatest.mock.MockitoSugar
 
 import org.scalatest.{BeforeAndAfterAll, ShouldMatchers, WordSpec}
@@ -20,8 +23,8 @@ import org.scalatest.time.Millis
 import org.scalatest.time.Span
 import twitter4j.Status
 
-
-class IngestorTest extends WordSpec  with MockitoSugar
+@RunWith(classOf[JUnitRunner])
+class IngestorTest extends WordSpec  with PersistFactoryMock
                                      with ShouldMatchers
                                      with BeforeAndAfterAll
                                      with  Eventually {
@@ -33,10 +36,10 @@ class IngestorTest extends WordSpec  with MockitoSugar
 
     val sc = new StreamingContextFake[Status]("org.apache.spark.util.ManualClock")
     val clock = new ClockWrapper(sc)
+    val persist = mock[Persist]
+    val persistFactory = mockFactory("Real Madrid",persist)
 
-    val persit = mock[Persist]
-
-    new Ingestor(persit).ingest(sc.createDStream)
+    new Ingestor(persistFactory).ingest(sc.createDStream)
 
     " be send one element to persist " in {
       sc.start()
@@ -44,7 +47,7 @@ class IngestorTest extends WordSpec  with MockitoSugar
       clock.advance(1)
       eventually{
         val status = new StatusDouble("Real Madrid","MM/dd/yy","01/01/16")
-        verify(persit).insert(argThat(new TupleMatcher(status.getText,status.getCreatedAt)))
+        verify(persist).insert(argThat(new TupleMatcher(status.getText,status.getCreatedAt)))
       }
       sc.stop()
     }
